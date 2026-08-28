@@ -1,0 +1,49 @@
+{
+    "projects": [
+        {
+            "id": "p1",
+            "name": "Website Redesign",
+            "description": "Redesign completo do site corporativo",
+            "createdAt": "2026-08-02T10:00:00.000Z",
+
+        "tasks": [
+            {
+                "id": "t1",
+                "title": "Criar mockups",
+                "description": "Desenhar wireframes no figma",
+                "dueDate": "2026-08-15",
+                "status": "concluída"
+            },
+            {
+                "id": "t2",
+                "title": "Implementar homepage",
+                "description": "Desenvolver a página inicial com React",
+                "dueDate": "2026-08-25",
+                "status": "em progresso"
+            }
+
+            ]
+
+        },
+
+            {
+                "id": "p2",
+                "name": "Aplicativo Mobile",
+                "description": "Desenvolvimento de aplicativo para iOS e Android",
+                "createdAt": "2026-08-10T10:00:00.000Z",
+
+                "tasks": [
+                {
+                    "id": "t3",
+                    "title": "Setup Reactive Native",
+                    "description": "Configurar o ambiente de desenvolvimento",
+                    "dueDate": "2026-08-20",
+                    "status": "pendente"
+                }
+            
+                ] 
+    
+            }
+            ]
+
+}
