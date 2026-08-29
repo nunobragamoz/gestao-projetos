@@ -24,7 +24,7 @@ export type RequiredTask = Required<ITask>;
 
 //Action type - cada action um type e payload
 export type ProjectAction = | {type: "SET_PROJECTS"; payload: IProject[]}
-                            | {type: "ADD_PROJECT"; payload: IProject[]} 
+                            | {type: "ADD_PROJECT"; payload: IProject} 
                             | {type: "UPDATE_PROJECT"; payload: IProject}
                             | {type: "DELETE_PROJECT"; payload: string}
                             | {type: "SET_LOADING"; payload: boolean}

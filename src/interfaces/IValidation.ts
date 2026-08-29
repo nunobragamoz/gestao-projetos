@@ -1,15 +1,12 @@
 
 //IvalidationError - Erro de Validacao
 
-export interface IValidationResult {
-    isvalid: boolean;
+export interface IValidationResult { 
+    isValid: boolean;
     errors: Record<string, string>;
 }
 
-/**
- * IValidator<T> - Generico para validadores
- * Qualquer validador implementa validate(data) e retorna IValidationResult
- */
+//Generico para validadores
 
 export interface IValidator<T> {
     validate(data: T): IValidationResult;

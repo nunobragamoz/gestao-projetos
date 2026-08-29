@@ -49,16 +49,16 @@ export class Task extends BaseEntity implements ITask {
 
     //Getters + setters + validation
     get title(): string { return this._title; }
-    get titled(value: string) { this._title = value; }
+    set titled(value: string) { this._title = value; }
 
     get description(): string { return this._description; }
-    get description(value: string) { this._description = value; }
+    set description(value: string) { this._description = value; }
 
     get dueDate(): string { return this._dueDate; }
-    get dueDate(value: string) { this._dueDate = value; }
+    set dueDate(value: string) { this._dueDate = value; }
 
     get status(): TaskStatus { return this._status; }
-    get status(value: TaskStatus) { this._status = value; }
+    set status(value: TaskStatus) { this._status = value; }
 
     markAsCompleted(): void {
         this._status = "concluída";
@@ -109,7 +109,7 @@ export class Task extends BaseEntity implements ITask {
             }
 
             return {
-                isvalid: Object.keys(errors).length === 0,
+                isValid: Object.keys(errors).length === 0,
                 errors,
             };
         }
