@@ -1,4 +1,4 @@
-import { IProject }  from "../interfaces/IProject";
+import type { IProject } from "../interfaces/IProject";
 
 const BASE_URL = "http://localhost:3001/projects";
 

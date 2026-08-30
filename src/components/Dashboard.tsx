@@ -1,32 +1,69 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useProjects } from "../hooks/useProjects";
 import type { IProject, IProjectFormData } from "../interfaces/IProject";
 import ProjectCard from "./ProjectCard";
 import ProjectForm from "./ProjectForm";
+import { withLoading } from "../hoc/withLoading";
 
-interface DashboardProps {
+// Component que recebe os dados carregados
 
+function ProjectGrid({ projects, onDelete }: {
+  
   projects: IProject[];
-  onCreate: (data: IProjectFormData) => void;
-  onDelete: (id: string) => void;
-  onView: (id: string) => void;
 
+  onDelete: (id: string) => void;
+
+}) {
+
+  if (projects.length === 0) {
+
+    return <p className="empty-msg">0 Projectos ainda. Crie um projecto primeiro!</p>;
+  }
+
+  return (
+
+    <div className="project-grid">
+
+      {projects.map(p =>
+        <ProjectCard key={p.id} project={p} onDelete={onDelete} />
+      )}
+
+    </div>
+  );
 }
 
-export default function Dashboard({ projects, onCreate, onDelete, onView }: DashboardProps) {
+// HOC - Spinner no ProjectGrid
+
+const ProjectGridWithLoading = withLoading(ProjectGrid, "Carregando...");
+
+export default function Dashboard() {
+
+  const { projects, loading, error, loadProjects, createProject, deleteProject } = useProjects();
 
   const [showForm, setShowForm] = useState(false);
 
-  const handleCreate = (data: IProjectFormData) => {
+  // Load
 
-    onCreate(data);
+  useEffect(() => {
+
+    loadProjects();
+  
+  }, [loadProjects]);
+
+  const handleCreate = async (data: IProjectFormData) => {
+   
+    await createProject(data);
+
     setShowForm(false);
 
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
 
-    if (window.confirm("Tem a certeza que quer apagar este projecto?")) {
-      onDelete(id);
+    if (window.confirm("Tem a certeza que quer excluir o projecto?")) {
+
+      await deleteProject(id);
+
     }
 
   };
@@ -45,14 +82,11 @@ export default function Dashboard({ projects, onCreate, onDelete, onView }: Dash
 
       </div>
 
+      {error && <div className="error-banner">{error}</div>}
+
       {showForm && <ProjectForm onSubmit={handleCreate} onCancel={() => setShowForm(false)} />}
-      {projects.length === 0 ? (
-        <p className="empty-msg">Nenhum projeto ainda. Cria o primeiro!</p>
-      ) : (
-        <div className="project-grid">
-          {projects.map(p => <ProjectCard key={p.id} project={p} onDelete={handleDelete} onView={onView} />)}
-        </div>
-      )}
+      
+      <ProjectGridWithLoading loading={loading} projects={projects} onDelete={handleDelete} />
 
     </div>
   );

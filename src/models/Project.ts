@@ -1,7 +1,7 @@
-import { IProject, IProjectFormData } from "../interfaces/IProject";
-import { ITask } from "../interfaces/ITask";
-import { IValidationResult, IValidator } from "../interfaces/IValidation";
-import { TaskCountByStatus } from "../types/types";
+import type { IProject, IProjectFormData } from "../interfaces/IProject";
+import type { ITask } from "../interfaces/ITask";
+import type { IValidationResult, IValidator } from "../interfaces/IValidation";
+import type { TaskCountByStatus } from "../types/types";
 import { Task } from "./Task";
 import { v4 as uuidv4 } from "uuid";
 

@@ -1,6 +1,8 @@
 
 import { useState } from "react";
 import type { IProjectFormData } from "../interfaces/IProject";
+import { ProjectValidator } from "../models/Project";
+import { useValidation } from "../hooks/useValidation";
 
 interface ProjectFormProps {
 
@@ -10,29 +12,25 @@ interface ProjectFormProps {
 
 }
 
+const projectValidator = new ProjectValidator();
+
+
 export default function ProjectForm({ onSubmit, onCancel, initialData }: ProjectFormProps) {
 
     const [name, setName] = useState(initialData?.name || "");
     const [description, setDescription] = useState(initialData?.description || "");
-    const [errors, setErrors] = useState<Record<string, string>>({});
+    
+    const { errors, validate, clearErrors } = useValidation(projectValidator);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        const newErrors: Record<string,string> = {};
+        const data: IProjectFormData = { name: name.trim(), description: description.trim() };
 
-        if (name.trim().length < 3) newErrors.name = "O nome deve ter 3 caracteres no minimo!";
-
-        if (description.trim().length < 10) newErrors.description = "A descrição deve ter 10 caracteres no minimo!";
-
-        if (Object.keys(newErrors).length > 0) { 
-            setErrors(newErrors); 
-            return;
+        if (validate(data)) {
+            onSubmit(data);
+            clearErrors();
         }
-        
-        setErrors({});
-
-        onSubmit({ name: name.trim(), description: description.trim()});
     };
 
     return (

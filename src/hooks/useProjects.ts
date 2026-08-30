@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useProjectContext } from "../context/ProjectContext";
-import { IProject, IProjectFormData } from "../interfaces/IProject";
+import type { IProject, IProjectFormData } from "../interfaces/IProject";
 import { Project } from "../models/Project";
 import { api } from "../services/api";
 

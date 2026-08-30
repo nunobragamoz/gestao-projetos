@@ -58,12 +58,16 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+  margin-left: 1.8rem;
+  margin-right: 1.8rem;
+  margin-top: 1.5rem;
 }
 
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
+  margin-left: 1.5rem;
 }
 
 /* Cartão de Projecto */
@@ -114,6 +118,7 @@ body {
   justify-content: center;
   min-width: 2.rem;
   transition: width 0.4s ease;
+  margin-left: 1rem;
 }
 
 /* Sumário de Badges e Tasks */
@@ -123,6 +128,7 @@ body {
   gap: 0.5rem;
   flex-wrap: wrap;
   margin-bottom: 0.5rem;
+  margin-left: 1rem;
 }
 
 .badge {
@@ -145,15 +151,17 @@ body {
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border-left: 4px solid #3498db;
+  margin-left: 1rem;
 }
 
-.form-card h3 { margin-top: 1rem; color: #2c3e50;}
+.form-card h3 { margin-top: 0.5rem; color: #2c3e50; margin-left: 1rem;}
 
 .form-group {
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  margin-left: 1rem;
 }
 
 .form-group label {
@@ -211,17 +219,24 @@ input-error {
   display: flex;
   gap: 0.8rem;
   margin-top: 0.5rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* Tasks */
 
-.task-section { margin-top: 2rem; }
+.tasks-header {
+  margin: 1rem;
+}
+
+.task-section { margin-top: 2rem; margin-left: 1rem;}
 
 .task-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  margin-left: 1rem;
 }
 
 .task-list {
@@ -271,9 +286,21 @@ input-error {
   text-transform: uppercase;
 }
 
-.status-badge.task-pending { background: #ffeaa7; color: #856404; }
-.status-badge.task-progess { background: #74b9ff; color: #0c5460; }
-.status-badge.task-done { background: #55efc4; color: #155724; }
+.status-badge.task-pending { 
+  background: #ffeaa7; 
+  color: #856404;
+  margin-left: 1rem; 
+}
+.status-badge.task-progess { 
+  background: #74b9ff; 
+  color: #0c5460;
+  margin-left: 1rem; 
+}
+.status-badge.task-done { 
+  background: #55efc4; 
+  color: #155724;
+  margin-left: 1rem; 
+}
 
 .due-date { font-size: 0.8rem; color: #888;}
 .overdue-badge { font-size: 0.8rem; color: #e74c3c; font-weight: 600; }
@@ -292,9 +319,15 @@ task-actions {
   color: #3498db;
   text-decoration: none;
   font-weight: 600;
+  margin-left: 1rem;
+  margin-top: 1rem;
 }
 
-.back-link:hover { text-decoration: underline; }
+.back-link:hover { 
+  text-decoration: underline;
+  
+}
+
 
 .project-detail-header {
   display: flex;
@@ -310,7 +343,10 @@ task-actions {
 .project-detail-header h2 { margin-bottom: 0.3rem; }
 .project-detail-header p { color: #666; }
 
-.progress-section h3 { margin-bottom: 0.8rem; }
+.progress-section h3 { 
+  margin-bottom: 0.8rem; 
+  margin-left: 1rem; 
+}
 
 /* Loading & Estados Vazios */
 

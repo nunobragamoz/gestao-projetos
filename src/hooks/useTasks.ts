@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useProjectContext } from "../context/ProjectContext";
-import { IProject } from "../interfaces/IProject";
-import { ITask, ITaskFormData } from "../interfaces/ITask";
+import type { IProject } from "../interfaces/IProject";
+import type { ITask, ITaskFormData } from "../interfaces/ITask";
 import { Task } from "../models/Task";
 import { Project } from "../models/Project";
 import { api } from "../services/api";

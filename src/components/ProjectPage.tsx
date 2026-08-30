@@ -1,63 +1,78 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import type { IProject, IProjectFormData } from "../interfaces/IProject";
-import type { ITask, ITaskFormData } from "../interfaces/ITask";
+import type  { ITask, ITaskFormData } from "../interfaces/ITask";
+import { useProjects } from "../hooks/useProjects";
+import { useTasks } from "../hooks/useTasks";
+import { Project } from "../models/Project";
 import ProjectForm from "./ProjectForm";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
 
-interface ProjectPageProps {
+export default function ProjectPage() {
 
-  project: IProject;
-  onBack: () => void;
-  onChange: (project: IProject) => void;
+  const { id } = useParams<{ id: string }>();
 
-}
-
-export default function ProjectPage({ project, onBack, onChange }: ProjectPageProps) {
+  const { projects, loadProjects, updateProject } = useProjects();
 
   const [showTaskForm, setShowTaskForm] = useState(false);
+
   const [editingProject, setEditingProject] = useState(false);
 
-  const total = project.tasks.length;
-  const completed = project.tasks.filter(t => t.status === "concluída").length;
-  const progress = total === 0 ? 0 : Math.round((completed / total) * 100);
-  const pending = project.tasks.filter(t => t.status === "pendente").length;
-  const inProgress = project.tasks.filter(t => t.status === "em progresso").length;
+  // Procurar o projecto no global state
 
-  const handleEditProject = (data: IProjectFormData) => {
+  const projectData: IProject | null = projects.find(p => p.id === id) || null;
 
-    onChange({ ...project, name: data.name, description: data.description });
+  // Hook das tarefas
+
+  const { addTask, updateTask, removeTask, completeTask } = useTasks(projectData);
+
+  useEffect(() => {
+
+    if (projects.length === 0) loadProjects();
+
+  }, [projects.length, loadProjects]);
+
+  if (!projectData) {
+
+    return (
+
+      <div className="loading-container">
+
+        <div className="spinner"></div>
+
+        <p>Carregando...</p>
+
+      </div>
+    );
+  }
+  
+  const project = new Project(projectData);
+
+  const progress = project.getProgress();
+
+  const counts = project.getTaskCountByStatus();
+
+
+  const handleEditProject = async (data: IProjectFormData) => {
+
+    await updateProject({ ...projectData, name: data.name, description: data.description });
+
     setEditingProject(false);
 
   };
 
-  const handleAddTask = (data: ITaskFormData) => {
+  const handleAddTask = async (data: ITaskFormData) => {
 
-    const newTask: ITask = { ...data, id: `t${Date.now()}` };
-    onChange({ ...project, tasks: [...project.tasks, newTask] });
+    await addTask(data);
     setShowTaskForm(false);
 
   };
 
-  const handleUpdateTask = (taskId: string, taskData: ITask) => {
+  const handleUpdateTask = async (taskId: string, taskData: ITask) => {
 
-    onChange({ ...project, tasks: project.tasks.map(t => t.id === taskId ? taskData : t) });
-
-  };
-
-  const handleRemoveTask = (taskId: string) => {
-
-    onChange({ ...project, tasks: project.tasks.filter(t => t.id !== taskId) });
-
-  };
-
-  const handleCompleteTask = (taskId: string) => {
-
-    onChange({
-      ...project,
-      tasks: project.tasks.map(t => t.id === taskId ? { ...t, status: "concluída" as const } : t),
-    });
+    await updateTask(taskId, taskData);
 
   };
 
@@ -65,16 +80,28 @@ export default function ProjectPage({ project, onBack, onChange }: ProjectPagePr
 
     <div className="project-page">
 
-      <button className="back-link" onClick={onBack}>← Voltar ao Dashboard</button>
+      <Link to="/projects" className="back-link">Voltar</Link>
 
       {editingProject ? (
+
         <ProjectForm onSubmit={handleEditProject} onCancel={() => setEditingProject(false)}
-          initialData={{ name: project.name, description: project.description }} />
-      ) : (
+          initialData={{ name: projectData.name, description: projectData.description }} />
+      
+        ) : (
+
         <div className="project-detail-header">
-          <div><h2>{project.name}</h2><p>{project.description}</p></div>
+
+          <div>
+
+            <h2>{projectData.name}</h2>
+            <p>{projectData.description}</p>
+
+          </div>
+
           <button className="btn btn-secondary" onClick={() => setEditingProject(true)}>Editar Projeto</button>
+        
         </div>
+
       )}
 
       <div className="progress-section">
@@ -82,14 +109,16 @@ export default function ProjectPage({ project, onBack, onChange }: ProjectPagePr
         <h3>Progresso: {progress}%</h3>
 
         <div className="progress-bar-container large">
+
           <div className="progress-bar" style={{ width: `${progress}%` }}>{progress}%</div>
+       
         </div>
 
         <div className="task-summary">
 
-          <span className="badge badge-pending">{pending} pendentes</span>
-          <span className="badge badge-progress">{inProgress} em progresso</span>
-          <span className="badge badge-done">{completed} concluídas</span>
+          <span className="badge badge-pending">{counts["pendente"]} pendentes</span>
+          <span className="badge badge-progress">{counts ["em progresso"]} em progresso</span>
+          <span className="badge badge-done">{counts.concluída} concluídas</span>
 
         </div>
 
@@ -99,16 +128,19 @@ export default function ProjectPage({ project, onBack, onChange }: ProjectPagePr
 
         <div className="tasks-header">
 
-          <h3>Tarefas ({project.tasks.length})</h3>
+          <h3>Tarefas ({projectData.tasks.length})</h3>
 
-          <button className="btn btn-primary" onClick={() => setShowTaskForm(!showTaskForm)}>
+          <button className="btn btn-primary" onClick={() => setShowTaskForm (!showTaskForm)}>
+            
             {showTaskForm ? "Cancelar" : "+ Nova Tarefa"}
+
           </button>
 
         </div>
 
         {showTaskForm && <TaskForm onSubmit={handleAddTask} onCancel={() => setShowTaskForm(false)} />}
-        <TaskList tasks={project.tasks} onUpdate={handleUpdateTask} onRemove={handleRemoveTask} onComplete={handleCompleteTask} />
+        
+        <TaskList tasks={projectData.tasks} onUpdate={handleUpdateTask} onRemove={removeTask} onComplete={completeTask} />
 
       </div>
 

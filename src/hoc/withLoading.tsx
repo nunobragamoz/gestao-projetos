@@ -1,3 +1,5 @@
+import type { ComponentType } from "react";
+
 // HOC withLoading - reutilizacao de logica
 
 interface WithLoadingProps {

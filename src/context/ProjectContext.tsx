@@ -1,6 +1,6 @@
-import { createContext, useContext, useReducer, ReactNode } from "react";
-import { IProject } from "../interfaces/IProject";
-import { ProjectAction } from "../types/types";
+import { createContext, useContext, useReducer, type ReactNode } from "react";
+import type { IProject } from "../interfaces/IProject";
+import type { ProjectAction } from "../types/types";
 
 // State de Projectos
 
@@ -91,6 +91,8 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
 
 // Hook que da acesso ao context - usado fora da erro
 
+// O erro é uma aviso e nao erro
+//.             ......AQUI.......
 export function useProjectContext(): ProjectContextType {
    
     const context = useContext(ProjectContext);

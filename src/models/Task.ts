@@ -1,6 +1,6 @@
-import { ITask, ITaskFormData } from "../interfaces/ITask";
-import { IValidationResult, IValidator } from "../interfaces/IValidation";
-import { TaskStatus } from "../types/types";
+import type { ITask, ITaskFormData } from "../interfaces/ITask";
+import type { IValidationResult, IValidator } from "../interfaces/IValidation";
+import type { TaskStatus } from "../types/types";
 import { v4 as uuidv4 } from "uuid";
 
 
@@ -70,6 +70,7 @@ export class Task extends BaseEntity implements ITask {
     }
 
     toJSON(): ITask {
+
         return {
             id: this._id,
             title: this._title,
@@ -80,6 +81,7 @@ export class Task extends BaseEntity implements ITask {
     }
 
     static fromFormData(data: ITaskFormData): Task {
+
         return new Task({
             id: uuidv4(),
             ...data,
@@ -87,7 +89,8 @@ export class Task extends BaseEntity implements ITask {
     }
 }
 
-    export class taskValidator implements IValidator<ITaskFormData> {
+    export class TaskValidator implements IValidator<ITaskFormData> {
+
         validate(data: ITaskFormData): IValidationResult {
             const errors: Record<string, string> = {};
 

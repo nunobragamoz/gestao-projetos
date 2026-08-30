@@ -1,6 +1,9 @@
 import { useState } from "react";
 import type { ITaskFormData } from "../interfaces/ITask";
 import type { TaskStatus } from "../types/types";
+import { useValidation } from "../hooks/useValidation";
+import { TaskValidator } from "../models/Task";
+
 
 interface TaskFormProps {
 
@@ -10,39 +13,28 @@ interface TaskFormProps {
 
 }
 
+const taskValidator = new TaskValidator();
+
+
 export default function TaskForm({ onSubmit, onCancel, initialData }: TaskFormProps) {
 
-    const [title, setTitle] = useState(initialData?.title || "");
-    const [description, setDescription] = useState(initialData?.description || "");
-    const [dueDate, setDueDate] = useState(initialData?.dueDate || "");
-    const [status, setStatus] = useState<TaskStatus>(initialData?.status ?? "pendente");
-    const [errors, setErrors] = useState<Record<string, string>>({});
+  const [title, setTitle] = useState(initialData?.title || "");
+  const [description, setDescription] = useState(initialData?.description || "");
+  const [dueDate, setDueDate] = useState(initialData?.dueDate || "");
+  const [status, setStatus] = useState<TaskStatus>(initialData?.status ?? "pendente");
 
-
+const { errors, validate, clearErrors } = useValidation(taskValidator);
 
 const handleSubmit = (e: React.FormEvent) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    const newErrors: Record<string, string> = {};
-
-    if (title.trim().length < 3) newErrors.title = "O título deve ter 3 caracteres no mínimo!";
-
-    if (description.trim().length < 5) newErrors.description = "A descrição deve ter 5 caracteres no mínimo!";
-
-    if (!dueDate) newErrors.dueDate = "A data de conclusão é obrigatória!";
-
-    if (Object.keys(newErrors).length > 0) {
-
-         setErrors(newErrors); 
-         return; 
-
-        }
-
-    setErrors({});
-
-    onSubmit({ title: title.trim(), description: description.trim(), dueDate, status});
-
+  const data: ITaskFormData = { title: title.trim(), description: description.trim(), dueDate, status };
+  
+    if (validate(data)) {
+      onSubmit(data);
+      clearErrors();
+    }
 };
 
 return (
