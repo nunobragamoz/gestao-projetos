@@ -82,7 +82,7 @@ body {
 
 .project-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0,12);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .project-header {
@@ -98,7 +98,7 @@ body {
 
 .progress-bar-container {
   background: #ecf0f1;
-  border-radius: 1 rem;
+  border-radius: 1rem;
   overflow: hidden;
   height: 1.4rem;
   margin-bottom: 1rem;
@@ -116,7 +116,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.rem;
+  min-width: 2rem;
   transition: width 0.4s ease;
   
 }
@@ -140,7 +140,7 @@ body {
 
 .badge-pending { background: #ffeaa7; color: #856404;}
 .badge-progress { background: #74b9ff; color: #0c5460;}
-.badge-done { background: #55efc4; color: #155724};
+.badge-done { background: #55efc4; color: #155724;}
 
 /* Formulários */
 
@@ -151,17 +151,19 @@ body {
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border-left: 4px solid #3498db;
-  margin-left: 1rem;
 }
 
-.form-card h3 { margin-top: 0.5rem; color: #2c3e50; margin-left: 1rem;}
+.form-card h3 { 
+  margin-top: 0.5rem; 
+  color: #2c3e50;
+  font-size: 1.1rem; 
+}
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  margin-left: 1rem;
 }
 
 .form-group label {
@@ -170,30 +172,93 @@ body {
   color: #555;
 }
 
-.form-group input:focus
-.form-group textarea:focus
-.form-group select:focus {
-
-  padding: 0.6rem 08rem;
-  border: 2px solid #dfe6e9;
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #dfe6e9;
   border-radius: 0.5rem;
+  font-family: inherit;
   font-size: 0.9rem;
-  transition: border-color 0.2s;
+  color: #2c3e50;
+  background-color: #fff;
+  box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Hovers */
 
-.form-group input:focus
-.form-group textarea:focus
-.form-group select:focus {
-
-  outline: none;
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
   border-color: #3498db;
 }
 
-input-error {
-  border-color: #e74c3c !important;
-  background: #fdf0f0;
+/* Focus */
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.18);
 }
+
+/* Placeholder */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #b2bec3;
+}
+
+/* Desativado */
+
+.form-group input:disabled,
+.form-group textarea:disabled,
+.form-group select:disabled {
+  background-color: #f5f6f7;
+  color: #95a5a6;
+  cursor: not-allowed;
+}
+
+/* Textarea - vertical apenas */
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.5;
+}
+
+/* Seta do select */
+
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='10'%20viewBox='0%200%2010%2010'%3E%3Cpolygon%20points='0,0%2010,0%205,5'%20fill='%23666'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 2.4rem;
+  padding-right: 2.4rem;
+  cursor: pointer;
+}
+
+/* Texto da data do Input */
+
+.form-group input[type="date"] {
+  min-height: 2.6rem;
+}
+
+/* State Errors de Validacao */
+
+.form-group input.input-error,
+.form-group textarea.input-error,
+.form-group select.input-error {
+  border-color: #e74c3c;
+  box-shadow: 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
+/* Erro embaixo do field */
 
 .error-msg {
   color: #e74c3c;
@@ -201,33 +266,36 @@ input-error {
   font-weight: 500;
 }
 
+/* Erro Global - Banner */
+
 .error-banner {
   background: #fdf0f0;
   border: 1px solid #e74c3c;
-  padding: 0.8rem 1rem;
+  color: #c0392b;;
+  padding: 0.85rem 1rem;
   border-radius: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
 }
 
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
 .form-actions {
   display: flex;
   gap: 0.8rem;
-  margin-top: 0.5rem;
-  margin-left: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.25rem;
 }
 
-/* Tasks */
 
-.tasks-header {
-  margin: 1rem;
-}
+
+
+
+
+
 
 .task-section { margin-top: 2rem; margin-left: 1rem;}
 
@@ -252,7 +320,7 @@ input-error {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0,06);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   border-left: 4px solid #bdc3c7;
   transition: all 0.2s;
 }
@@ -261,7 +329,7 @@ input-error {
 .task-progress { border-left-color: #3498db;}
 .task-done {
   border-left-color: #27ae60;
-  opacity: 075;
+  opacity: 0.75;
 }
 
 .task-done h4 { text-decoration: line-through; }
@@ -291,7 +359,7 @@ input-error {
   color: #856404;
   margin-left: 1rem; 
 }
-.status-badge.task-progess { 
+.status-badge.task-progress { 
   background: #74b9ff; 
   color: #0c5460;
   margin-left: 1rem; 
@@ -305,7 +373,7 @@ input-error {
 .due-date { font-size: 0.8rem; color: #888;}
 .overdue-badge { font-size: 0.8rem; color: #e74c3c; font-weight: 600; }
 
-task-actions {
+.task-actions {
   display: flex;
   gap: 0.4rem;
   flex-shrink: 0;
@@ -380,7 +448,7 @@ task-actions {
 
 /* Responsividade */
 
-@media (max-widht: 600px) {
+@media (max-width: 600px) {
   .dashboard-header { flex-direction: column; gap: 1rem; }
   .project-card { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }

@@ -55,7 +55,7 @@ export default function TaskItem({ task, onUpdate, onRemove, onComplete }: TaskI
                 </div>
             </div>
 
-            <div className="task-action">
+            <div className="task-actions">
                 {task.status !== "concluída" && (
                     <button className="btn btn-success btn-sm" onClick={() => onComplete(task.id)} title="Concluir">✓</button>
                     )}
