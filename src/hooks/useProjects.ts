@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useProjectContext } from "../context/ProjectContext";
+import { useProjectContext } from "./useProjectContext";
 import type { IProject, IProjectFormData } from "../interfaces/IProject";
 import { Project } from "../models/Project";
 import { api } from "../services/api";
@@ -22,8 +22,9 @@ export function useProjects() {
             const data = await api.getProjects();
             dispatch({ type: "SET_PROJECTS", payload: data });
 
-        } catch (err: any) {
-            dispatch({ type: "SET_ERROR", payload: err.message });
+        } catch (err: unknown) { //Any vai desligar o type checking por isso é melhor usar unknown
+            const message = err instanceof Error ? err.message : "Erro desconhecido";
+            dispatch({ type: "SET_ERROR", payload: message });
         }
 
     }, [dispatch]);
