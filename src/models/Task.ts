@@ -49,7 +49,7 @@ export class Task extends BaseEntity implements ITask {
 
     //Getters + setters + validation
     get title(): string { return this._title; }
-    set titled(value: string) { this._title = value; }
+    set title(value: string) { this._title = value; }
 
     get description(): string { return this._description; }
     set description(value: string) { this._description = value; }

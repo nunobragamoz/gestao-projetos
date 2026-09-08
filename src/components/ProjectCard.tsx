@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import type { IProject } from "../interfaces/IProject";
-import { Project } from "..//models/Project";
+import { Project } from "../models/Project";
 
 interface ProjectCardProps {
     project: IProject;
@@ -42,7 +42,7 @@ export default function ProjectCard({ project, onDelete }: ProjectCardProps) {
 
                 <span className="badge badge-pending">{counts["pendente"]} pendentes</span>
                 <span className="badge badge-progress">{counts["em progresso"]} em progresso</span>
-                <span className="badge badge-done">{counts["concluída"]} concluída</span>
+                <span className="badge badge-done">{counts["concluída"]} concluídas</span>
             
             </div>
 
