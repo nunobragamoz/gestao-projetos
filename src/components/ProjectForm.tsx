@@ -36,11 +36,11 @@ export default function ProjectForm({ onSubmit, onCancel, initialData }: Project
     return (
 
         <form className="form-card" onSubmit={handleSubmit}>
-            <h3>{initialData ? "Editar Projecto" : "Novo Projecto"}</h3>
+            <h3>{initialData ? "Editar Projeto" : "Novo Projeto"}</h3>
 
             <div className="form-group">
 
-                <label htmlFor="name">Nome do Projecto</label>
+                <label htmlFor="name">Nome do Projeto</label>
 
                 <input id="name" type="text" value={name} onChange={e => setName(e.target.value)}
                 placeholder="Ex: Redesenho de Homepage" className={errors.name ? "input-error" : ""} />
@@ -54,7 +54,7 @@ export default function ProjectForm({ onSubmit, onCancel, initialData }: Project
                 <label htmlFor="description">Descrição</label>
 
                 <textarea id="description" value={description} onChange={e => setDescription(e.target.value)}
-                placeholder="Descreva em poucas palavras o objectivo do Projecto." rows={3}
+                placeholder="Descreva em poucas palavras o objectivo do Projeto." rows={3}
                 className={errors.description ? "input-error" : ""}/>
 
                 {errors.description && <span className="error-msg">{errors.description}</span>}
@@ -63,7 +63,7 @@ export default function ProjectForm({ onSubmit, onCancel, initialData }: Project
 
             <div className="form-actions">
 
-                <button type="submit" className="btn btn-primary">{initialData ? "Guardar" : "Criar Projecto"}</button>
+                <button type="submit" className="btn btn-primary">{initialData ? "Guardar" : "Criar Projeto"}</button>
                 <button type="button" className="btn btn-secondary" onClick={onCancel}>Cancelar</button>
             </div>
             

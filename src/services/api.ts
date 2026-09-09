@@ -6,30 +6,30 @@ const BASE_URL = "http://localhost:3001/projects";
 
 export const api = {
 
-    //obter projectos
+    //obter projetos
     
     async getProjects(): Promise<IProject[]> {
 
         const res = await fetch(BASE_URL);
 
-        if (!res.ok) throw new Error("Erro! Falha no carregamento dos Projectos!");
+        if (!res.ok) throw new Error("Erro! Falha no carregamento dos Projetos!");
 
         return res.json();
     },
 
-    // obter um unico projecto atraves de ID
+    // obter um unico projeto atraves de ID
 
     async getProjectById(id: string): Promise<IProject> {
 
         const res = await fetch(`${BASE_URL}/${id}`);
 
-        if (!res.ok) throw new Error("Erro! Projecto nao encontrado!");
+        if (!res.ok) throw new Error("Erro! Projeto nao encontrado!");
 
         return res.json();
 
     },
 
-    // Criar novo Projecto
+    // Criar novo Projeto
 
     async createProject(project: IProject): Promise<IProject> {
 
@@ -39,7 +39,7 @@ export const api = {
             body: JSON.stringify(project),
         });
 
-        if (!res.ok) throw new Error("Erro na criacao do Projecto!");
+        if (!res.ok) throw new Error("Erro na criacao do Projeto!");
 
         return res.json();
     
@@ -55,19 +55,19 @@ export const api = {
             body: JSON.stringify(project),
         });
 
-        if (!res.ok) throw new Error("Erro ao editar o projecto!");
+        if (!res.ok) throw new Error("Erro ao editar o projeto!");
 
         return res.json();
     },
 
-    // Excluir projectos
+    // Excluir projetos
 
     async deleteProject(id: string): Promise<void> {
 
         const res = await fetch(`${BASE_URL}/${id}`,
             { method: "DELETE"});
 
-        if (!res.ok) throw new Error("Erro ao excluir o projecto!");
+        if (!res.ok) throw new Error("Erro ao excluir o projeto!");
 
     },
 };

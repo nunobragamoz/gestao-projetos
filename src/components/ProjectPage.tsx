@@ -20,7 +20,7 @@ export default function ProjectPage() {
 
   const [editingProject, setEditingProject] = useState(false);
 
-  // Procurar o projecto no global state
+  // Procurar o projeto no global state
 
   const projectData: IProject | null = projects.find(p => p.id === id) || null;
 

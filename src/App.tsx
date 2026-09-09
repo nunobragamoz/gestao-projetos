@@ -12,7 +12,7 @@ function App() {
     <div className="app">
 
       <header className="app-header">
-        <h1>TechSolutions - Gestao de Projectos</h1>
+        <h1>TechSolutions - Gestao de Projetos</h1>
       </header>
 
       <main className="app-main">

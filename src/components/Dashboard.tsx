@@ -17,7 +17,7 @@ function ProjectGrid({ projects, onDelete }: {
 
   if (projects.length === 0) {
 
-    return <p className="empty-msg">0 Projectos ainda. Crie um projecto primeiro!</p>;
+    return <p className="empty-msg">0 Projetos ainda. Crie um projeto primeiro!</p>;
   }
 
   return (
@@ -60,7 +60,7 @@ export default function Dashboard() {
 
   const handleDelete = async (id: string) => {
 
-    if (window.confirm("Tem a certeza que quer excluir o projecto?")) {
+    if (window.confirm("Tem a certeza que quer excluir o projeto?")) {
 
       await deleteProject(id);
 
@@ -74,10 +74,10 @@ export default function Dashboard() {
 
       <div className="dashboard-header">
 
-        <h2>Dashboard — Projectos</h2>
+        <h2>Dashboard — Projetos</h2>
 
         <button className="btn btn-primary" onClick={() => setShowForm(!showForm)}>
-          {showForm ? "Cancelar" : "+ Novo Projecto"}
+          {showForm ? "Cancelar" : "+ Novo Projeto"}
         </button>
 
       </div>

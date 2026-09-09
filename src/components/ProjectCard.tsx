@@ -49,7 +49,7 @@ export default function ProjectCard({ project, onDelete }: ProjectCardProps) {
             {/* React router*/}
             
             <Link to={`/projects/${project.id}`} className="btn btn-primary btn-block">
-                Ver Projecto
+                Ver Projeto
             </Link> 
 
         </div>

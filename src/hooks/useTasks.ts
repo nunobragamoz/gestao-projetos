@@ -6,7 +6,7 @@ import { Task } from "../models/Task";
 import { Project } from "../models/Project";
 import { api } from "../services/api";
 
-// Gerador de Tarefas dentro do Projecto Correspondente
+// Gerador de Tarefas dentro do Projeto Correspondente
 
 export function useTasks(projectData: IProject | null) {
 

@@ -4,13 +4,13 @@ import type { IProject, IProjectFormData } from "../interfaces/IProject";
 import { Project } from "../models/Project";
 import { api } from "../services/api";
 
-// Hook para encapsular todo o CRUD dos projectos
+// Hook para encapsular todo o CRUD dos projetos
 
 export function useProjects() {
 
     const { state, dispatch } = useProjectContext();
 
-    // Load dos projectos da API
+    // Load dos projetos da API
 
     const loadProjects = useCallback(async () => {
 
@@ -30,7 +30,7 @@ export function useProjects() {
     }, [dispatch]);
 
 
-    // Novo Projecto - Classe Project + Factory
+    // Novo Projeto - Classe Project + Factory
 
     const createProject = useCallback(async (formData: IProjectFormData) => {
         
@@ -44,7 +44,7 @@ export function useProjects() {
 
     }, [dispatch]);
 
-    // Actualizar o Projecto
+    // Actualizar o Projeto
 
     const updateProject = useCallback(async (project: IProject) => {
 
@@ -56,7 +56,7 @@ export function useProjects() {
 
   }, [dispatch]);
 
-    // Exclir o Projecto
+    // Exclir o Projeto
 
     const deleteProject = useCallback(async (id: string) => {
 

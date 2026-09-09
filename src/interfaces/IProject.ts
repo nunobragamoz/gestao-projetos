@@ -1,8 +1,8 @@
 import type { ITask } from "./ITask";
 
 /**
- * IProject - Contracto da estrutura do projecto
- * Composto por: um projecto que contem lista de tarefa (ITask[])
+ * IProject - Contracto da estrutura do projeto
+ * Composto por: um projeto que contem lista de tarefa (ITask[])
  */
 
 export interface IProject {
@@ -14,7 +14,7 @@ export interface IProject {
 }
 
 /**
- * IProjecFormData - Dados do formulário de criaçã/ediçao do projecto
+ * IProjecFormData - Dados do formulário de criaçã/ediçao do projeto
  */
 
 export type IProjectFormData = Pick<IProject, "name" | "description">;

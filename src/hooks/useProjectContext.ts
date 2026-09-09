@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ProjectContext, ProjectContextType } from "../context/projectStore";
 
-// Hook para encapsular o contexto do Projecto
+// Hook para encapsular o contexto do Projeto
 
 export function useProjectContext(): ProjectContextType {
 

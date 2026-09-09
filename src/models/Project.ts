@@ -60,7 +60,7 @@ export class Project {
         }
     }
 
-    // Calculo do Progresso do Projecto em percentagem
+    // Calculo do Progresso do Projeto em percentagem
 
     getProgress(): number {
 
@@ -96,7 +96,7 @@ export class Project {
         };
     }
 
-    // Fabrica projectos dos dados inseridos no formulario
+    // Fabrica projetos dos dados inseridos no formulario
 
     static fromFormData(data: IProjectFormData): Project {
 

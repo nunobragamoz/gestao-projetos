@@ -11,7 +11,7 @@ interface TaskListProps {
 export default function TaskList({ tasks, onUpdate, onRemove, onComplete }: TaskListProps) {
 
         if (tasks.length === 0) {
-        return <p className="empty-msg">Projecto sem tarefas. Adicona uma!</p>
+        return <p className="empty-msg">Projeto sem tarefas. Adicona uma!</p>
     }
 
     return (
